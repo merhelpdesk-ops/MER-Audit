@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +9,7 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
+  <!-- SEO / Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://audits.mer.finance/">
   <meta property="og:title" content="MER Audit Report">
@@ -26,95 +27,209 @@
   <meta name="twitter:description" content="Official smart contract audit reports and security verification files for MER Protocol.">
   <meta name="twitter:image" content="https://audits.mer.finance/merposter.png">
 
+  <!-- Google Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
           colors: {
             brand: {
-              50: '#f0fdf4',
+              400: '#4ade80',
               500: '#22c55e',
               600: '#16a34a',
-              900: '#14532d',
+              glow: 'rgba(34, 197, 94, 0.15)',
             },
             dark: {
-              bg: '#0b0f17',
-              card: '#111827',
-              border: '#1f2937',
-              hover: '#1f2937'
+              bg: '#080c14',
+              card: '#0f172a',
+              cardHover: '#1e293b',
+              border: '#1e293b',
+              borderLight: '#334155'
             }
+          },
+          backgroundImage: {
+            'cyber-grid': "radial-gradient(rgba(34, 197, 94, 0.08) 1px, transparent 0)",
           }
         }
       }
     }
   </script>
-</head>
-<body class="bg-dark-bg text-gray-100 min-h-screen font-sans antialiased selection:bg-brand-500 selection:text-white">
 
-  <header class="border-b border-dark-border bg-dark-card/50 backdrop-blur-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080c14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #334155;
+    }
+    .bg-grid-pattern {
+      background-size: 24px 24px;
+    }
+  </style>
+</head>
+
+<body class="bg-dark-bg text-slate-200 min-h-screen font-sans antialiased selection:bg-brand-500 selection:text-slate-950 relative overflow-x-hidden">
+
+  <!-- Background Ambient Glow & Grid -->
+  <div class="fixed inset-0 bg-cyber-grid bg-grid-pattern opacity-40 pointer-events-none z-0"></div>
+  <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-brand-500/10 blur-[140px] rounded-full pointer-events-none z-0"></div>
+  <div class="fixed top-1/3 -right-40 w-[500px] h-[300px] bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+  <!-- Header -->
+  <header class="border-b border-dark-border/80 bg-dark-bg/80 backdrop-blur-xl sticky top-0 z-50 transition-all duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center gap-4">
+      
       <div class="flex items-center gap-4">
-        <img src="logo.webp" alt="MER Audit Report" class="h-10 md:h-12 w-auto object-contain">
-        <div class="border-l border-dark-border pl-4 hidden sm:block">
-          <p class="text-xs text-gray-400">MER supports any institution to conduct audits.</p>
+        <a href="#" class="flex items-center gap-3 group">
+          <img src="logo.webp" alt="MER Audit Report" class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
+        </a>
+        <div class="h-5 w-px bg-slate-800 hidden sm:block"></div>
+        <p class="text-xs text-slate-400 hidden sm:block font-medium">
+          MER Protocol Smart Contract Security Center
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-brand-500/10 text-brand-400 border border-brand-500/20 shadow-sm shadow-brand-500/5 backdrop-blur-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+          </span>
+          <span id="badgeCount">18 Verified Files</span>
         </div>
       </div>
-      <div class="flex items-center gap-2">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-brand-500/10 text-brand-500 border border-brand-500/20">
-          <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-          18 Verified Files
-        </span>
-      </div>
+
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-    
-    <div class="flex flex-col md:flex-row gap-4 justify-between items-center mb-8">
-      <div class="relative w-full md:w-96">
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+
+    <!-- Hero / Metrics Overview Header -->
+    <div class="mb-10">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-400 mb-2">
+            <i class="fa-solid fa-shield-halved"></i> Security Directory
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+            Smart Contract Audit Reports
+          </h1>
+          <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+            Official security verification and audit documentation. MER supports independent third-party audits for all protocol modules.
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Stats Grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 rounded-xl bg-dark-card/60 border border-dark-border/80 backdrop-blur-md">
+          <div class="text-slate-400 text-xs font-medium mb-1">Total Reports</div>
+          <div class="text-2xl font-bold text-white font-mono" id="statTotal">18</div>
+        </div>
+        <div class="p-4 rounded-xl bg-dark-card/60 border border-dark-border/80 backdrop-blur-md">
+          <div class="text-slate-400 text-xs font-medium mb-1">Audit Firms</div>
+          <div class="text-2xl font-bold text-white font-mono" id="statFirms">7</div>
+        </div>
+        <div class="p-4 rounded-xl bg-dark-card/60 border border-dark-border/80 backdrop-blur-md">
+          <div class="text-slate-400 text-xs font-medium mb-1">Latest Audit</div>
+          <div class="text-2xl font-bold text-brand-400 font-mono">06 / 2025</div>
+        </div>
+        <div class="p-4 rounded-xl bg-dark-card/60 border border-dark-border/80 backdrop-blur-md">
+          <div class="text-slate-400 text-xs font-medium mb-1">Security Score</div>
+          <div class="text-2xl font-bold text-emerald-400 font-mono flex items-center gap-1.5">
+            100% <span class="text-xs text-slate-400 font-normal">Passed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls Bar: Search & Category Filter -->
+    <div class="flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center mb-6">
+      <!-- Search Input -->
+      <div class="relative flex-1 max-w-md">
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
         <input 
           type="text" 
           id="searchInput" 
           placeholder="Search by firm, module, or filename..." 
-          class="w-full pl-10 pr-4 py-2.5 bg-dark-card border border-dark-border rounded-xl text-sm focus:outline-none focus:border-brand-500 text-gray-200 placeholder-gray-500 transition-colors"
+          class="w-full pl-10 pr-10 py-2.5 bg-dark-card/80 border border-dark-border rounded-xl text-sm focus:outline-none focus:border-brand-500/60 focus:ring-2 focus:ring-brand-500/10 text-slate-100 placeholder-slate-500 transition-all duration-200 shadow-inner"
         >
+        <button id="clearSearch" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
       </div>
 
-      <div class="flex flex-wrap gap-2 w-full md:w-auto" id="filterTabs">
-        <button data-category="all" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg bg-brand-500 text-gray-950 shadow-sm transition-all">All</button>
-        <button data-category="Core Protocol" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg bg-dark-card text-gray-400 hover:text-white border border-dark-border transition-all">Core Protocol</button>
-        <button data-category="Solana" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg bg-dark-card text-gray-400 hover:text-white border border-dark-border transition-all">Solana</button>
-        <button data-category="Strategy Vault" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg bg-dark-card text-gray-400 hover:text-white border border-dark-border transition-all">Strategy Vault</button>
-        <button data-category="Cross-Chain" class="filter-btn px-4 py-2 text-xs font-medium rounded-lg bg-dark-card text-gray-400 hover:text-white border border-dark-border transition-all">Cross-Chain</button>
+      <!-- Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-1.5 p-1 bg-dark-card/80 border border-dark-border rounded-xl backdrop-blur-sm" id="filterTabs">
+        <button data-category="all" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-brand-500 text-slate-950 shadow-md shadow-brand-500/20 transition-all duration-200">All</button>
+        <button data-category="Core Protocol" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200">Core Protocol</button>
+        <button data-category="Solana" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200">Solana</button>
+        <button data-category="Strategy Vault" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200">Strategy Vault</button>
+        <button data-category="Cross-Chain" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200">Cross-Chain</button>
       </div>
     </div>
 
-    <div class="bg-dark-card border border-dark-border rounded-2xl overflow-hidden shadow-xl">
+    <!-- Reports Table Container -->
+    <div class="bg-dark-card/60 backdrop-blur-md border border-dark-border rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
       <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm text-gray-300">
-          <thead class="bg-dark-bg/60 border-b border-dark-border text-xs uppercase text-gray-400 font-semibold tracking-wider">
+        <table class="w-full text-left text-sm text-slate-300">
+          <thead class="bg-slate-900/80 border-b border-dark-border text-[11px] uppercase text-slate-400 font-semibold tracking-wider">
             <tr>
-              <th scope="col" class="py-4 px-6">Audit Firm / Scope</th>
-              <th scope="col" class="py-4 px-6">Target / Module</th>
-              <th scope="col" class="py-4 px-6">Date</th>
-              <th scope="col" class="py-4 px-6">File Name</th>
-              <th scope="col" class="py-4 px-6 text-right">Action</th>
+              <th scope="col" class="py-4 px-6">Audit Firm</th>
+              <th scope="col" class="py-4 px-6">Target Module / Scope</th>
+              <th scope="col" class="py-4 px-6">Audit Date</th>
+              <th scope="col" class="py-4 px-6">Document Name</th>
+              <th scope="col" class="py-4 px-6 text-right">Verification</th>
             </tr>
           </thead>
-          <tbody id="reportsTable" class="divide-y divide-dark-border">
+          <tbody id="reportsTable" class="divide-y divide-dark-border/60">
+            <!-- Dynamic Content -->
           </tbody>
         </table>
       </div>
       
-      <div id="noResults" class="hidden py-12 text-center text-gray-500">
-        <i class="fa-regular fa-folder-open text-4xl mb-3 block opacity-50"></i>
-        No matching audit reports found.
+      <!-- No Results Placeholder -->
+      <div id="noResults" class="hidden py-16 text-center text-slate-500">
+        <div class="w-12 h-12 rounded-full bg-slate-800/60 border border-slate-700/50 flex items-center justify-center mx-auto mb-3 text-slate-400">
+          <i class="fa-solid fa-magnifying-glass text-lg"></i>
+        </div>
+        <p class="text-base font-medium text-slate-300">No matching audit reports</p>
+        <p class="text-xs text-slate-500 mt-1">Try searching for a different scope, audit firm, or file name.</p>
       </div>
     </div>
+
   </main>
+
+  <!-- Footer -->
+  <footer class="mt-20 border-t border-dark-border/60 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p>© MER Protocol. All smart contract security reports are verified.</p>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="https://audits.mer.finance/" class="hover:text-brand-400 transition-colors">Security Verification Portal</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     const reports = [
@@ -138,8 +253,36 @@
       { firm: "Zenith", scope: "Strategy Vault", category: "Strategy Vault", date: "06/2025", file: "Zenith_Strategy_Vault_06_2025.pdf" }
     ];
 
+    // Firm Styling Helper
+    const firmStyles = {
+      'CertiK': { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20', icon: 'fa-shield-halved' },
+      'OtterSec': { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/20', icon: 'fa-otter' },
+      'Zellic': { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20', icon: 'fa-cube' },
+      'Sherlock': { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/20', icon: 'fa-magnifying-glass-chart' },
+      'Halborn': { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/20', icon: 'fa-lock' },
+      'Guardian': { bg: 'bg-indigo-500/10', text: 'text-indigo-400', border: 'border-indigo-500/20', icon: 'fa-user-shield' },
+      'Zenith': { bg: 'bg-sky-500/10', text: 'text-sky-400', border: 'border-sky-500/20', icon: 'fa-bolt' },
+      'default': { bg: 'bg-slate-800', text: 'text-slate-300', border: 'border-slate-700', icon: 'fa-file-shield' }
+    };
+
+    // Category Badge Helper
+    const categoryBadges = {
+      'Solana': 'bg-purple-950/50 text-purple-300 border-purple-800/40',
+      'Cross-Chain': 'bg-cyan-950/50 text-cyan-300 border-cyan-800/40',
+      'Core Protocol': 'bg-emerald-950/50 text-emerald-300 border-emerald-800/40',
+      'Strategy Vault': 'bg-amber-950/50 text-amber-300 border-amber-800/40',
+      'default': 'bg-slate-800 text-slate-300 border-slate-700'
+    };
+
     let currentCategory = 'all';
     let searchQuery = '';
+
+    function updateStats(filteredCount) {
+      document.getElementById('statTotal').innerText = filteredCount;
+      const uniqueFirms = new Set(reports.map(r => r.firm)).size;
+      document.getElementById('statFirms').innerText = uniqueFirms;
+      document.getElementById('badgeCount').innerText = `${filteredCount} Verified Files`;
+    }
 
     function renderTable() {
       const tbody = document.getElementById('reportsTable');
@@ -154,6 +297,8 @@
         return matchesCategory && matchesSearch;
       });
 
+      updateStats(filtered.length);
+
       if (filtered.length === 0) {
         tbody.innerHTML = '';
         noResults.classList.remove('hidden');
@@ -163,53 +308,84 @@
       noResults.classList.add('hidden');
       tbody.innerHTML = filtered.map(r => {
         const isImage = r.file.toLowerCase().endsWith('.png') || r.file.toLowerCase().endsWith('.jpg');
-        const iconClass = isImage ? 'fa-image text-amber-400' : 'fa-file-pdf text-brand-500';
+        const iconClass = isImage ? 'fa-regular fa-image' : 'fa-regular fa-file-pdf';
         const buttonText = isImage ? 'View Image' : 'View PDF';
-        const dotBg = isImage ? 'bg-amber-400/60' : 'bg-brand-500/60';
-        const btnStyle = isImage ? 'bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-gray-950 border-amber-500/20' : 'bg-brand-500/10 text-brand-500 hover:bg-brand-500 hover:text-gray-950 border-brand-500/20';
+        
+        const fStyle = firmStyles[r.firm] || firmStyles['default'];
+        const catBadge = categoryBadges[r.category] || categoryBadges['default'];
 
-        return '<tr class="hover:bg-dark-hover/50 transition-colors group">' +
-          '<td class="py-4 px-6 font-semibold text-white flex items-center gap-2">' +
-            '<span class="w-2 h-2 rounded-full ' + dotBg + '"></span>' +
-            r.firm +
-          '</td>' +
-          '<td class="py-4 px-6">' +
-            '<span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-800 text-gray-300 border border-gray-700">' +
-              r.scope +
-            '</span>' +
-          '</td>' +
-          '<td class="py-4 px-6 text-gray-400 font-mono text-xs">' + r.date + '</td>' +
-          '<td class="py-4 px-6 font-mono text-xs text-gray-400 group-hover:text-gray-200 transition-colors">' +
-            r.file +
-          '</td>' +
-          '<td class="py-4 px-6 text-right">' +
-            '<a href="./' + encodeURIComponent(r.file) + '" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium ' + btnStyle + ' transition-all border">' +
-              '<i class="fa-solid ' + iconClass + '"></i>' +
-              buttonText +
-            '</a>' +
-          '</td>' +
-        '</tr>';
+        const btnStyle = isImage 
+          ? 'bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-slate-950 border-amber-500/30' 
+          : 'bg-brand-500/10 text-brand-400 hover:bg-brand-500 hover:text-slate-950 border-brand-500/30 shadow-sm shadow-brand-500/5';
+
+        return `
+          <tr class="hover:bg-slate-800/50 transition-colors duration-150 group">
+            <td class="py-4 px-6 font-medium text-white">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg ${fStyle.bg} border ${fStyle.border} flex items-center justify-center ${fStyle.text} text-xs shrink-0">
+                  <i class="fa-solid ${fStyle.icon}"></i>
+                </div>
+                <span class="font-semibold text-slate-100">${r.firm}</span>
+              </div>
+            </td>
+            <td class="py-4 px-6">
+              <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium border ${catBadge}">
+                ${r.scope}
+              </span>
+            </td>
+            <td class="py-4 px-6 text-slate-400 font-mono text-xs">
+              ${r.date}
+            </td>
+            <td class="py-4 px-6 font-mono text-xs text-slate-400 group-hover:text-slate-200 transition-colors">
+              <span class="truncate max-w-[200px] sm:max-w-xs inline-block">${r.file}</span>
+            </td>
+            <td class="py-4 px-6 text-right">
+              <a href="./${encodeURIComponent(r.file)}" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold ${btnStyle} transition-all duration-200 border">
+                <i class="${iconClass}"></i>
+                <span>${buttonText}</span>
+              </a>
+            </td>
+          </tr>
+        `;
       }).join('');
     }
 
+    // Filter Buttons Listener
     document.getElementById('filterTabs').addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
       
       document.querySelectorAll('.filter-btn').forEach(b => {
-        b.className = 'filter-btn px-4 py-2 text-xs font-medium rounded-lg bg-dark-card text-gray-400 hover:text-white border border-dark-border transition-all';
+        b.className = 'filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200';
       });
-      btn.className = 'filter-btn px-4 py-2 text-xs font-medium rounded-lg bg-brand-500 text-gray-950 shadow-sm transition-all';
+      btn.className = 'filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-brand-500 text-slate-950 shadow-md shadow-brand-500/20 transition-all duration-200';
       
       currentCategory = btn.dataset.category;
       renderTable();
     });
 
-    document.getElementById('searchInput').addEventListener('input', (e) => {
+    // Search Input Listener
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearSearch');
+
+    searchInput.addEventListener('input', (e) => {
       searchQuery = e.target.value;
+      if (searchQuery.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
       renderTable();
     });
 
+    clearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      clearBtn.classList.add('hidden');
+      renderTable();
+    });
+
+    // Initial Render
     renderTable();
   </script>
 </body>
