@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MER Protocol - Security Audit Reports</title>
+  <title>MER Audit Report</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
@@ -34,19 +34,14 @@
   <!-- Header -->
   <header class="border-b border-dark-border bg-dark-card/50 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-emerald-300 flex items-center justify-center font-bold text-gray-950 text-xl shadow-lg shadow-brand-500/20">
-          M
-        </div>
-        <div>
-          <h1 class="text-xl font-bold tracking-tight text-white">MER Protocol</h1>
-          <p class="text-xs text-gray-400">Security Audit Reports Index</p>
-        </div>
+      <div>
+        <h1 class="text-xl font-bold tracking-tight text-white">MER Audit Report</h1>
+        <p class="text-xs text-gray-400 mt-0.5">MER supports any institution to conduct audits.</p>
       </div>
       <div class="flex items-center gap-2">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-brand-500/10 text-brand-500 border border-brand-500/20">
           <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-          17 Verified Audits
+          18 Verified Files
         </span>
       </div>
     </div>
@@ -84,15 +79,15 @@
         <table class="w-full text-left text-sm text-gray-300">
           <thead class="bg-dark-bg/60 border-b border-dark-border text-xs uppercase text-gray-400 font-semibold tracking-wider">
             <tr>
-              <th scope="col" class="py-4 px-6">Audit Firm</th>
-              <th scope="col" class="py-4 px-6">Target / Scope</th>
+              <th scope="col" class="py-4 px-6">Audit Firm / Scope</th>
+              <th scope="col" class="py-4 px-6">Target / Module</th>
               <th scope="col" class="py-4 px-6">Date</th>
-              <th scope="col" class="py-4 px-6">Report File</th>
+              <th scope="col" class="py-4 px-6">File Name</th>
               <th scope="col" class="py-4 px-6 text-right">Action</th>
             </tr>
           </thead>
           <tbody id="reportsTable" class="divide-y divide-dark-border">
-            <!-- Table rows will be populated by JavaScript -->
+            <!-- Table rows populated by JavaScript -->
           </tbody>
         </table>
       </div>
@@ -100,7 +95,7 @@
       <!-- Empty State -->
       <div id="noResults" class="hidden py-12 text-center text-gray-500">
         <i class="fa-regular fa-folder-open text-4xl mb-3 block opacity-50"></i>
-        No matching audit reports found.
+        No matching audit reports or files found.
       </div>
     </div>
   </main>
@@ -119,6 +114,7 @@
       { firm: "OtterSec", scope: "Solana Vault", category: "Solana", date: "11/2024", file: "OtterSec_Solana_Vault_11_2024.pdf" },
       { firm: "Sherlock", scope: "Core Protocol", category: "Core Protocol", date: "08/2024", file: "Sherlock_08_2024.pdf" },
       { firm: "Sherlock", scope: "Solana Vault", category: "Solana", date: "10/2024", file: "Sherlock_Solana_Vault_10_2024.pdf" },
+      { firm: "WOOFi", scope: "WOOFi Swap Integration", category: "Cross-Chain", date: "2024", file: "WOOFIswap.pdf" },
       { firm: "Zellic", scope: "Core Protocol", category: "Core Protocol", date: "11/2023", file: "Zellic_11_2023.pdf" },
       { firm: "Zellic", scope: "Strategy Vault", category: "Strategy Vault", date: "03/2025", file: "Zellic_Strategy_Vault_03_2025.pdf" },
       { firm: "Zenith", scope: "LayerZero V2", category: "Cross-Chain", date: "04/2025", file: "Zenith_LayerZeroV2_04_2025.pdf" },
@@ -148,33 +144,39 @@
       }
 
       noResults.classList.add('hidden');
-      tbody.innerHTML = filtered.map(r => `
-        <tr class="hover:bg-dark-hover/50 transition-colors group">
-          <td class="py-4 px-6 font-semibold text-white flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-brand-500/60"></span>
-            ${r.firm}
-          </td>
-          <td class="py-4 px-6">
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-800 text-gray-300 border border-gray-700">
-              ${r.scope}
-            </span>
-          </td>
-          <td class="py-4 px-6 text-gray-400 font-mono text-xs">${r.date}</td>
-          <td class="py-4 px-6 font-mono text-xs text-gray-400 group-hover:text-gray-200 transition-colors">
-            ${r.file}
-          </td>
-          <td class="py-4 px-6 text-right">
-            <a 
-              href="./${encodeURIComponent(r.file)}" 
-              target="_blank" 
-              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-brand-500/10 text-brand-500 hover:bg-brand-500 hover:text-gray-950 transition-all border border-brand-500/20"
-            >
-              <i class="fa-solid fa-file-pdf"></i>
-              View PDF
-            </a>
-          </td>
-        </tr>
-      `).join('');
+      tbody.innerHTML = filtered.map(r => {
+        const isImage = r.file.endsWith('.png') || r.file.endsWith('.jpg');
+        const iconClass = isImage ? 'fa-image text-amber-400' : 'fa-file-pdf text-brand-500';
+        const buttonText = isImage ? 'View Image' : 'View PDF';
+        
+        return `
+          <tr class="hover:bg-dark-hover/50 transition-colors group">
+            <td class="py-4 px-6 font-semibold text-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full ${isImage ? 'bg-amber-400/60' : 'bg-brand-500/60'}"></span>
+              ${r.firm}
+            </td>
+            <td class="py-4 px-6">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-800 text-gray-300 border border-gray-700">
+                ${r.scope}
+              </span>
+            </td>
+            <td class="py-4 px-6 text-gray-400 font-mono text-xs">${r.date}</td>
+            <td class="py-4 px-6 font-mono text-xs text-gray-400 group-hover:text-gray-200 transition-colors">
+              ${r.file}
+            </td>
+            <td class="py-4 px-6 text-right">
+              <a 
+                href="./${encodeURIComponent(r.file)}" 
+                target="_blank" 
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium ${isImage ? 'bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-gray-950 border-amber-500/20' : 'bg-brand-500/10 text-brand-500 hover:bg-brand-500 hover:text-gray-950 border-brand-500/20'} transition-all border"
+              >
+                <i class="fa-solid ${iconClass}"></i>
+                ${buttonText}
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join('');
     }
 
     // Filter Button Handler
