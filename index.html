@@ -9,7 +9,6 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-  <!-- Open Graph / Telegram Card Data -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://audits.mer.finance/">
   <meta property="og:title" content="MER Audit Report">
@@ -20,7 +19,6 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="600">
 
-  <!-- Twitter Card Data -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:domain" content="audits.mer.finance">
   <meta name="twitter:url" content="https://audits.mer.finance/">
@@ -28,7 +26,6 @@
   <meta name="twitter:description" content="Official smart contract audit reports and security verification files for MER Protocol.">
   <meta name="twitter:image" content="https://audits.mer.finance/merposter.png">
 
-  <!-- CSS & Tailwind Script -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script>
@@ -165,7 +162,7 @@
 
       noResults.classList.add('hidden');
       tbody.innerHTML = filtered.map(r => {
-        const isImage = r.file.endsWith('.png') || r.file.endsWith('.jpg');
+        const isImage = r.file.toLowerCase().endsWith('.png') || r.file.toLowerCase().endsWith('.jpg');
         const iconClass = isImage ? 'fa-image text-amber-400' : 'fa-file-pdf text-brand-500';
         const buttonText = isImage ? 'View Image' : 'View PDF';
         const dotBg = isImage ? 'bg-amber-400/60' : 'bg-brand-500/60';
