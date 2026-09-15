@@ -1,372 +1,345 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MER Audit Report</title>
-  
-  <link rel="canonical" href="https://audits.mer.finance/" />
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MER Audit Reports - Maintain Transparency</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://audits.mer.finance/">
-  <meta property="og:title" content="MER Audit Report">
-  <meta property="og:description" content="Official smart contract audit reports and security verification files for MER Protocol.">
-  <meta property="og:image" content="https://audits.mer.finance/merdex-social-card.png">
-  <meta property="og:image:secure_url" content="https://audits.mer.finance/merdex-social-card.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="MER Audit Reports - Maintain Transparency">
+    <meta name="description" content="Official smart contract and system security audit reports for MER. Transparency and security first.">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:domain" content="audits.mer.finance">
-  <meta name="twitter:url" content="https://audits.mer.finance/">
-  <meta name="twitter:title" content="MER Audit Report">
-  <meta name="twitter:description" content="Official smart contract audit reports and security verification files for MER Protocol.">
-  <meta name="twitter:image" content="https://audits.mer.finance/merdex-social-card.png">
+    <!-- Open Graph / Facebook / Telegram -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MER Audit Reports - Maintain Transparency">
+    <meta property="og:description" content="Explore and verify all official smart contract audit reports.">
+    <meta property="og:image" content="merdex-social-card.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            brand: {
-              400: '#4ade80',
-              500: '#22c55e',
-              600: '#16a34a',
-              glow: 'rgba(34, 197, 94, 0.15)',
-            },
-            dark: {
-              bg: '#080c14',
-              card: '#0f172a',
-              cardHover: '#1e293b',
-              border: '#1e293b',
-              borderLight: '#334155'
-            }
-          },
-          backgroundImage: {
-            'cyber-grid': "radial-gradient(rgba(34, 197, 94, 0.08) 1px, transparent 0)",
-          }
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="MER Audit Reports - Maintain Transparency">
+    <meta property="twitter:description" content="Explore and verify all official smart contract audit reports.">
+    <meta property="twitter:image" content="merdex-social-card.png">
+
+    <style>
+        :root {
+            --bg-color: #070a12;
+            --card-bg: #0e1424;
+            --border-color: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-cyan: #00d2ff;
+            --accent-blue: #0072ff;
+            --hover-bg: #182238;
         }
-      }
-    }
-  </script>
 
-  <style>
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #080c14;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #334155;
-    }
-    .bg-grid-pattern {
-      background-size: 24px 24px;
-    }
-  </style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            background-image: radial-gradient(circle at 50% 0%, #0d1d3a 0%, #070a12 70%);
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .social-banner {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 210, 255, 0.1);
+        }
+
+        .social-banner img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+        }
+
+        .brand h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #00d2ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.85rem 1.2rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 12px rgba(0, 210, 255, 0.2);
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tag-btn:hover, .tag-btn.active {
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+            color: #ffffff;
+            border-color: transparent;
+        }
+
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .report-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s;
+        }
+
+        .report-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .auditor-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            background: rgba(0, 210, 255, 0.1);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .report-date {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .report-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            line-height: 1.4;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            padding: 0.65rem;
+            background-color: var(--hover-bg);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .download-btn:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: #fff;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+            grid-column: 1 / -1;
+        }
+    </style>
 </head>
+<body>
 
-<body class="bg-dark-bg text-slate-200 min-h-screen font-sans antialiased selection:bg-brand-500 selection:text-slate-950 relative overflow-x-hidden">
-
-  <div class="fixed inset-0 bg-cyber-grid bg-grid-pattern opacity-40 pointer-events-none z-0"></div>
-  <div class="fixed -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-brand-500/10 blur-[140px] rounded-full pointer-events-none z-0"></div>
-  <div class="fixed top-1/3 -right-40 w-[500px] h-[300px] bg-cyan-500/5 blur-[120px] rounded-full pointer-events-none z-0"></div>
-
-  <header class="border-b border-dark-border/80 bg-dark-bg/80 backdrop-blur-xl sticky top-0 z-50 transition-all duration-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center gap-4">
-      
-      <div class="flex items-center gap-4">
-        <a href="#" class="flex items-center gap-3 group">
-          <img src="logo.webp" alt="MER Audit Report" class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
-        </a>
-        <div class="h-5 w-px bg-slate-800 hidden sm:block"></div>
-        <p class="text-xs text-slate-400 hidden sm:block font-medium">
-          MER Protocol Smart Contract Security Center
-        </p>
-      </div>
-
-      <div class="flex items-center gap-3">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium bg-brand-500/10 text-brand-400 border border-brand-500/20 shadow-sm shadow-brand-500/5 backdrop-blur-sm">
-          <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-          </span>
-          <span id="badgeCount">18 Verified Files</span>
-        </div>
-      </div>
-
-    </div>
-  </header>
-
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-
-    <div class="mb-10">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
-        <div>
-          <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-400 mb-2">
-            <i class="fa-solid fa-shield-halved"></i> Security Directory
-          </div>
-          <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Smart Contract Audit Reports
-          </h1>
-          <p class="text-slate-400 text-sm mt-1 max-w-2xl">
-            Official security verification and audit documentation. MER supports independent third-party audits for all protocol modules.
-          </p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-4 rounded-xl bg-dark-card/60 border border-dark-border/80 backdrop-blur-md">
-          <div class="text-slate-400 text-xs font-medium mb-1">Total Reports</div>
-          <div class="text-2xl font-bold text-white font-mono" id="statTotal">18</div>
-        </div>
-        <div class="p-4 rounded-xl bg-dark-card/60 border border-dark-border/80 backdrop-blur-md">
-          <div class="text-slate-400 text-xs font-medium mb-1">Audit Firms</div>
-          <div class="text-2xl font-bold text-white font-mono" id="statFirms">8</div>
-        </div>
-        <div class="p-4 rounded-xl bg-dark-card/60 border border-dark-border/80 backdrop-blur-md">
-          <div class="text-slate-400 text-xs font-medium mb-1">Latest Audit</div>
-          <div class="text-2xl font-bold text-brand-400 font-mono">06 / 2025</div>
-        </div>
-        <div class="p-4 rounded-xl bg-dark-card/60 border border-dark-border/80 backdrop-blur-md">
-          <div class="text-slate-400 text-xs font-medium mb-1">Security Score</div>
-          <div class="text-2xl font-bold text-emerald-400 font-mono flex items-center gap-1.5">
-            100% <span class="text-xs text-slate-400 font-normal">Passed</span>
-          </div>
-        </div>
-      </div>
+<div class="container">
+    <div class="social-banner">
+        <img src="merdex-social-card.png" alt="MER Audit Report Banner" onerror="this.style.display='none'">
     </div>
 
-    <div class="flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center mb-6">
-      <div class="relative flex-1 max-w-md">
-        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
-        <input 
-          type="text" 
-          id="searchInput" 
-          placeholder="Search by firm, module, or filename..." 
-          class="w-full pl-10 pr-10 py-2.5 bg-dark-card/80 border border-dark-border rounded-xl text-sm focus:outline-none focus:border-brand-500/60 focus:ring-2 focus:ring-brand-500/10 text-slate-100 placeholder-slate-500 transition-all duration-200 shadow-inner"
-        >
-        <button id="clearSearch" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300">
-          <i class="fa-solid fa-xmark text-xs"></i>
-        </button>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-1.5 p-1 bg-dark-card/80 border border-dark-border rounded-xl backdrop-blur-sm" id="filterTabs">
-        <button data-category="all" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-brand-500 text-slate-950 shadow-md shadow-brand-500/20 transition-all duration-200">All</button>
-        <button data-category="Core Protocol" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200">Core Protocol</button>
-        <button data-category="Solana" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200">Solana</button>
-        <button data-category="Strategy Vault" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200">Strategy Vault</button>
-        <button data-category="Cross-Chain" class="filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200">Cross-Chain</button>
-      </div>
-    </div>
-
-    <div class="bg-dark-card/60 backdrop-blur-md border border-dark-border rounded-2xl overflow-hidden shadow-2xl shadow-black/40">
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm text-slate-300">
-          <thead class="bg-slate-900/80 border-b border-dark-border text-[11px] uppercase text-slate-400 font-semibold tracking-wider">
-            <tr>
-              <th scope="col" class="py-4 px-6">Audit Firm</th>
-              <th scope="col" class="py-4 px-6">Target Module / Scope</th>
-              <th scope="col" class="py-4 px-6">Audit Date</th>
-              <th scope="col" class="py-4 px-6">Document Name</th>
-              <th scope="col" class="py-4 px-6 text-right">Verification</th>
-            </tr>
-          </thead>
-          <tbody id="reportsTable" class="divide-y divide-dark-border/60">
-          </tbody>
-        </table>
-      </div>
-      
-      <div id="noResults" class="hidden py-16 text-center text-slate-500">
-        <div class="w-12 h-12 rounded-full bg-slate-800/60 border border-slate-700/50 flex items-center justify-center mx-auto mb-3 text-slate-400">
-          <i class="fa-solid fa-magnifying-glass text-lg"></i>
+    <header>
+        <div class="brand">
+            <img src="logo.webp" alt="Logo" onerror="this.style.display='none'">
+            <h1>MER Audit Reports</h1>
         </div>
-        <p class="text-base font-medium text-slate-300">No matching audit reports</p>
-        <p class="text-xs text-slate-500 mt-1">Try searching for a different scope, audit firm, or file name.</p>
-      </div>
+    </header>
+
+    <div class="controls">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search audit reports by name, auditor, or tag...">
+        <div class="filter-tags" id="filterTags">
+            <button class="tag-btn active" data-filter="all">All</button>
+            <button class="tag-btn" data-filter="Solana">Solana</button>
+            <button class="tag-btn" data-filter="Vault">Vault</button>
+            <button class="tag-btn" data-filter="Staking">Staking</button>
+            <button class="tag-btn" data-filter="Guardian">Guardian</button>
+            <button class="tag-btn" data-filter="Zenith">Zenith</button>
+            <button class="tag-btn" data-filter="Zellic">Zellic</button>
+        </div>
     </div>
 
-  </main>
+    <div class="report-grid" id="reportGrid"></div>
+</div>
 
-  <footer class="mt-20 border-t border-dark-border/60 py-8 text-center text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-      <p>© MER Global All rights reserved.</p>
-      <div class="flex items-center gap-4 text-slate-400">
-        <a href="https://audits.mer.finance/" class="hover:text-brand-400 transition-colors">Security Verification Portal</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+<script>
     const reports = [
-      { firm: "CertiK", scope: "Core Protocol", category: "Core Protocol", date: "09/2022", file: "CertiK_09_2022.pdf" },
-      { firm: "Guardian", scope: "Core Protocol", category: "Core Protocol", date: "07/2024", file: "Guardian_07_2024.pdf" },
-      { firm: "Guardian", scope: "Core Protocol", category: "Core Protocol", date: "10/2023", file: "Guardian_10_2023.pdf" },
-      { firm: "Guardian", scope: "OFT (Omnichain)", category: "Cross-Chain", date: "07/2024", file: "Guardian_OFT_07_2024.pdf" },
-      { firm: "Guardian", scope: "Solana Staking", category: "Solana", date: "03/2025", file: "Guardian_Solana_Staking_03_2025.pdf" },
-      { firm: "Guardian", scope: "Solana Vault", category: "Solana", date: "11/2025", file: "Guardian_Solana_Vault_11_2025.pdf" },
-      { firm: "Guardian", scope: "Strategy Vault", category: "Strategy Vault", date: "02/2025", file: "Guardian_Strategy_Vault_02_2025.pdf" },
-      { firm: "Halborn", scope: "Core Protocol", category: "Core Protocol", date: "07/2022", file: "Halborn_07_2022.pdf" },
-      { firm: "Independent Researcher", scope: "Protocol Review", category: "Core Protocol", date: "09/2023", file: "Independent Researcher_09_2023.pdf" },
-      { firm: "OtterSec", scope: "Solana Vault", category: "Solana", date: "11/2024", file: "OtterSec_Solana_Vault_11_2024.pdf" },
-      { firm: "Sherlock", scope: "Core Protocol", category: "Core Protocol", date: "08/2024", file: "Sherlock_08_2024.pdf" },
-      { firm: "Sherlock", scope: "Solana Vault", category: "Solana", date: "10/2024", file: "Sherlock_Solana_Vault_10_2024.pdf" },
-      { firm: "CertiK", scope: "Swap", category: "Cross-Chain", date: "10/2021", file: "swap.pdf" },
-      { firm: "Zellic", scope: "Core Protocol", category: "Core Protocol", date: "11/2023", file: "Zellic_11_2023.pdf" },
-      { firm: "Zellic", scope: "Strategy Vault", category: "Strategy Vault", date: "03/2025", file: "Zellic_Strategy_Vault_03_2025.pdf" },
-      { firm: "Zenith", scope: "LayerZero V2", category: "Cross-Chain", date: "04/2025", file: "Zenith_LayerZeroV2_04_2025.pdf" },
-      { firm: "Zenith", scope: "Solana Staking", category: "Solana", date: "03/2025", file: "Zenith_Solana_Staking_03_2025.pdf" },
-      { firm: "Zenith", scope: "Strategy Vault", category: "Strategy Vault", date: "06/2025", file: "Zenith_Strategy_Vault_06_2025.pdf" }
+        { name: "CertiK Audit (09/2022)", file: "CertiK_09_2022.pdf", auditor: "CertiK", date: "2022-09", tags: ["General"] },
+        { name: "Guardian Audit (07/2024)", file: "Guardian_07_2024.pdf", auditor: "Guardian", date: "2024-07", tags: ["General"] },
+        { name: "Guardian Audit (10/2023)", file: "Guardian_10_2023.pdf", auditor: "Guardian", date: "2023-10", tags: ["General"] },
+        { name: "Guardian OFT Audit", file: "Guardian_OFT_07_2024.pdf", auditor: "Guardian", date: "2024-07", tags: ["OFT"] },
+        { name: "Guardian Solana Staking", file: "Guardian_Solana_Staking_01_2024.pdf", auditor: "Guardian", date: "2024-01", tags: ["Solana", "Staking"] },
+        { name: "Guardian Solana Vault", file: "Guardian_Solana_Vault_11_2023.pdf", auditor: "Guardian", date: "2023-11", tags: ["Solana", "Vault"] },
+        { name: "Guardian Strategy Vault", file: "Guardian_Strategy_Vault_02_2024.pdf", auditor: "Guardian", date: "2024-02", tags: ["Vault", "Strategy"] },
+        { name: "Halborn Audit (07/2022)", file: "Halborn_07_2022.pdf", auditor: "Halborn", date: "2022-07", tags: ["General"] },
+        { name: "Independent Researcher Review", file: "Independent Researcher_09_2023.pdf", auditor: "Independent", date: "2023-09", tags: ["Research"] },
+        { name: "OtterSec Solana Vault", file: "OtterSec_Solana_Vault_11_2023.pdf", auditor: "OtterSec", date: "2023-11", tags: ["Solana", "Vault"] },
+        { name: "Sherlock Audit (08/2024)", file: "Sherlock_08_2024.pdf", auditor: "Sherlock", date: "2024-08", tags: ["General"] },
+        { name: "Sherlock Solana Vault", file: "Sherlock_Solana_Vault_10_2023.pdf", auditor: "Sherlock", date: "2023-10", tags: ["Solana", "Vault"] },
+        { name: "Zellic Audit (11/2023)", file: "Zellic_11_2023.pdf", auditor: "Zellic", date: "2023-11", tags: ["General"] },
+        { name: "Zellic Strategy Vault", file: "Zellic_Strategy_Vault_03_2024.pdf", auditor: "Zellic", date: "2024-03", tags: ["Vault", "Strategy"] },
+        { name: "Zenith LayerZeroV2", file: "Zenith_LayerZeroV2_04_2024.pdf", auditor: "Zenith", date: "2024-04", tags: ["LayerZero"] },
+        { name: "Zenith Solana Staking", file: "Zenith_Solana_Staking_03_2024.pdf", auditor: "Zenith", date: "2024-03", tags: ["Solana", "Staking"] },
+        { name: "Zenith Strategy Vault", file: "Zenith_Strategy_Vault_06_2024.pdf", auditor: "Zenith", date: "2024-06", tags: ["Vault", "Strategy"] },
+        { name: "Swap Specification & Audit", file: "swap.pdf", auditor: "Internal", date: "2023-01", tags: ["Swap"] }
     ];
 
-    const firmStyles = {
-      'CertiK': { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/20', icon: 'fa-shield-halved' },
-      'OtterSec': { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/20', icon: 'fa-otter' },
-      'Zellic': { bg: 'bg-blue-500/10', text: 'text-blue-400', border: 'border-blue-500/20', icon: 'fa-cube' },
-      'Sherlock': { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/20', icon: 'fa-magnifying-glass-chart' },
-      'Halborn': { bg: 'bg-cyan-500/10', text: 'text-cyan-400', border: 'border-cyan-500/20', icon: 'fa-lock' },
-      'Guardian': { bg: 'bg-indigo-500/10', text: 'text-indigo-400', border: 'border-indigo-500/20', icon: 'fa-user-shield' },
-      'Zenith': { bg: 'bg-sky-500/10', text: 'text-sky-400', border: 'border-sky-500/20', icon: 'fa-bolt' },
-      'default': { bg: 'bg-slate-800', text: 'text-slate-300', border: 'border-slate-700', icon: 'fa-file-shield' }
-    };
-
-    const categoryBadges = {
-      'Solana': 'bg-purple-950/50 text-purple-300 border-purple-800/40',
-      'Cross-Chain': 'bg-cyan-950/50 text-cyan-300 border-cyan-800/40',
-      'Core Protocol': 'bg-emerald-950/50 text-emerald-300 border-emerald-800/40',
-      'Strategy Vault': 'bg-amber-950/50 text-amber-300 border-amber-800/40',
-      'default': 'bg-slate-800 text-slate-300 border-slate-700'
-    };
-
-    let currentCategory = 'all';
-    let searchQuery = '';
-
-    function updateStats(filteredCount) {
-      document.getElementById('statTotal').innerText = filteredCount;
-      const uniqueFirms = new Set(reports.map(r => r.firm)).size;
-      document.getElementById('statFirms').innerText = uniqueFirms;
-      document.getElementById('badgeCount').innerText = `${filteredCount} Verified Files`;
-    }
-
-    function renderTable() {
-      const tbody = document.getElementById('reportsTable');
-      const noResults = document.getElementById('noResults');
-      if (!tbody || !noResults) return;
-      
-      const filtered = reports.filter(r => {
-        const matchesCategory = currentCategory === 'all' || r.category === currentCategory;
-        const matchesSearch = r.firm.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                              r.scope.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                              r.file.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesCategory && matchesSearch;
-      });
-
-      updateStats(filtered.length);
-
-      if (filtered.length === 0) {
-        tbody.innerHTML = '';
-        noResults.classList.remove('hidden');
-        return;
-      }
-
-      noResults.classList.add('hidden');
-      tbody.innerHTML = filtered.map(r => {
-        const isImage = r.file.toLowerCase().endsWith('.png') || r.file.toLowerCase().endsWith('.jpg');
-        const iconClass = isImage ? 'fa-regular fa-image' : 'fa-regular fa-file-pdf';
-        const buttonText = isImage ? 'View Image' : 'View PDF';
-        
-        const fStyle = firmStyles[r.firm] || firmStyles['default'];
-        const catBadge = categoryBadges[r.category] || categoryBadges['default'];
-
-        const btnStyle = isImage 
-          ? 'bg-amber-500/10 text-amber-400 hover:bg-amber-500 hover:text-slate-950 border-amber-500/30' 
-          : 'bg-brand-500/10 text-brand-400 hover:bg-brand-500 hover:text-slate-950 border-brand-500/30 shadow-sm shadow-brand-500/5';
-
-        return `
-          <tr class="hover:bg-slate-800/50 transition-colors duration-150 group">
-            <td class="py-4 px-6 font-medium text-white">
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg ${fStyle.bg} border ${fStyle.border} flex items-center justify-center ${fStyle.text} text-xs shrink-0">
-                  <i class="fa-solid ${fStyle.icon}"></i>
-                </div>
-                <span class="font-semibold text-slate-100">${r.firm}</span>
-              </div>
-            </td>
-            <td class="py-4 px-6">
-              <span class="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-medium border ${catBadge}">
-                ${r.scope}
-              </span>
-            </td>
-            <td class="py-4 px-6 text-slate-400 font-mono text-xs">
-              ${r.date}
-            </td>
-            <td class="py-4 px-6 font-mono text-xs text-slate-400 group-hover:text-slate-200 transition-colors">
-              <span class="truncate max-w-[200px] sm:max-w-xs inline-block">${r.file}</span>
-            </td>
-            <td class="py-4 px-6 text-right">
-              <a href="./${encodeURIComponent(r.file)}" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold ${btnStyle} transition-all duration-200 border">
-                <i class="${iconClass}"></i>
-                <span>${buttonText}</span>
-              </a>
-            </td>
-          </tr>
-        `;
-      }).join('');
-    }
-
-    document.getElementById('filterTabs').addEventListener('click', (e) => {
-      const btn = e.target.closest('.filter-btn');
-      if (!btn) return;
-      
-      document.querySelectorAll('.filter-btn').forEach(b => {
-        b.className = 'filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 transition-all duration-200';
-      });
-      btn.className = 'filter-btn px-3.5 py-1.5 text-xs font-medium rounded-lg bg-brand-500 text-slate-950 shadow-md shadow-brand-500/20 transition-all duration-200';
-      
-      currentCategory = btn.dataset.category;
-      renderTable();
-    });
-
+    const grid = document.getElementById('reportGrid');
     const searchInput = document.getElementById('searchInput');
-    const clearBtn = document.getElementById('clearSearch');
+    const filterButtons = document.querySelectorAll('.tag-btn');
+    let currentFilter = 'all';
 
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value;
-      if (searchQuery.length > 0) {
-        clearBtn.classList.remove('hidden');
-      } else {
-        clearBtn.classList.add('hidden');
-      }
-      renderTable();
+    function renderReports() {
+        const query = searchInput.value.toLowerCase();
+        grid.innerHTML = '';
+
+        const filtered = reports.filter(r => {
+            const matchesSearch = r.name.toLowerCase().includes(query) || 
+                                  r.auditor.toLowerCase().includes(query) ||
+                                  r.file.toLowerCase().includes(query);
+            
+            const matchesFilter = currentFilter === 'all' || 
+                                  r.tags.includes(currentFilter) || 
+                                  r.auditor === currentFilter ||
+                                  r.file.includes(currentFilter);
+
+            return matchesSearch && matchesFilter;
+        });
+
+        if (filtered.length === 0) {
+            grid.innerHTML = '<div class="no-results">No matching audit reports found</div>';
+            return;
+        }
+
+        filtered.forEach(r => {
+            const card = document.createElement('div');
+            card.className = 'report-card';
+            card.innerHTML = `
+                <div>
+                    <div class="card-header">
+                        <span class="auditor-badge">${r.auditor}</span>
+                        <span class="report-date">${r.date}</span>
+                    </div>
+                    <div class="report-title">${r.name}</div>
+                </div>
+                <a href="${r.file}" class="download-btn" target="_blank">
+                    View Report (PDF)
+                </a>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    searchInput.addEventListener('input', renderReports);
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.getAttribute('data-filter');
+            renderReports();
+        });
     });
 
-    clearBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      searchQuery = '';
-      clearBtn.classList.add('hidden');
-      renderTable();
-    });
+    renderReports();
+</script>
 
-    renderTable();
-  </script>
 </body>
 </html>
